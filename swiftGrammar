@@ -1,0 +1,121 @@
+import UIKit
+
+
+// 변수 var
+var greeting = "Hello, playground"
+
+var age = 10
+
+// Sage type
+//age = "hello"  // 타입을 바꿀 수 없다
+
+
+// 상수 let : 값이 변하지 않음
+let guestName = "john"
+
+
+// Type Annotations
+var str: String = "Hello, World"
+
+var yourAge: Int = 22
+
+var screenHeight: Float = 560
+
+var sum = yourAge + Int(screenHeight)
+
+
+// Booleans
+var isOpen: Bool = false
+
+if isOpen{
+    
+}else{
+    
+}
+
+// Tuples
+var topTitle = ("메인화면", "mainIcon.png")
+
+topTitle.0
+topTitle.1
+
+// Tuples 이용한 http status code
+var httpError = (statusCode : 404, description: "not found")
+
+httpError.statusCode
+httpError.description
+
+
+// Optionals (옵셔널)
+// 값이 있을 수도 있고, 없을 수도 있다.
+
+// 값이 있다(0 -> 다쓴 상태인 값), 값이 없다 -> nil
+var myAge: Int? = 0 // 옆의 물음표가 Int형 변수가 nil값을 받게 해주는 옵셔널 형태로 만들어줌
+myAge = nil
+
+// 값이 없는 상태 체크 -> 틀린 로직
+if myAge == 0{
+    // alert - 나이를 입력해 주세요.
+}
+
+// 정확한 로직
+if myAge == nil{
+    // alert - 나이를 입력해 주세요.
+}
+
+var noName: String?
+
+if noName == nil{
+    // alert - 이름을 입력해 주세요.
+}
+
+// 옵셔널 그냥 사용할 수 없는 경우가 많이 있음
+var a: Int? = 10
+var b: Int? = 20
+
+// unwrap(Int? -> Int)
+
+// coalesce
+var c = (a ?? 0) + (b ?? 0) // ??는 옵셔널 변수의 값이 nil일 때 어떤 값을 넣어줄지 결정
+
+// force unwrap -> 강제로, 힘으로(주의사항 : 변수에 값이 없으면 앱이 죽어버린다)
+var d = a! + b!
+
+// Unwrapping(if Statements)
+
+if a != nil{
+    print(a)
+}
+
+// if let, if var
+if let hasNumber = a{
+    print(hasNumber)
+}
+
+if var hasNumber = a{
+    hasNumber = hasNumber * 2
+    print(hasNumber)
+}
+
+// guard let, guard var
+func testFunc(){
+    guard let num = a else{    // a에 숫자가 없으면 return 해버려서 testFunc의 다른 코드 실행을 안함
+        return
+    }
+    print(num)
+    print("end")
+}
+testFunc()
+
+func testFunc2(){
+    guard var num2 = a else{
+        return
+    }
+    num2 = num2 * 2
+    print(num2)
+    print("end")
+}
+testFunc2()
+
+
+
