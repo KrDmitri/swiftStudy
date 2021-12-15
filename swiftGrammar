@@ -1,4 +1,3 @@
-```Swift
 import UIKit
 
 
@@ -117,6 +116,4 @@ func testFunc2(){
     print("end")
 }
 testFunc2()
-```
-
 
