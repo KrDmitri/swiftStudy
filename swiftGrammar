@@ -132,3 +132,209 @@ if inputValue >= "\u{30}" && inputValue <= "\u{39}"{
 // 영어만 입력해야 한다.
 "\u{41}"
 "\u{7a}"
+
+// String
+
+let myName = "lee\nmin\nhi"
+
+let myLongStr =
+"""
+hi
+hello
+welcome
+"""
+
+print(myLongStr)
+
+let isOn = true
+isOn.description
+
+let myNumber = 123
+myNumber.description
+
+"my nummber is \(myNumber)"
+
+let strPrac: String = "String for practice"
+
+// String의 메서드들
+// last, dropLast(), first
+strPrac.last
+strPrac.dropLast()
+strPrac.first
+
+let strPrac2: String = "12.33"
+
+// split(separator: )
+strPrac2.split(separator: ".")
+
+
+//Collection Types, 집합 타입
+
+// Array
+var myNames = Array<String>()
+var myAges = [Int]()
+
+myNames.append("kim")
+myNames.append("lee")
+myNames.append("jin")
+
+myNames[2]
+
+// 방어코드(안전한 코딩 스타일)
+let index = 2
+if myNames.count > index{
+    myNames[index]
+}
+
+myNames.append(contentsOf: ["hi", "hello"])
+myNames = myNames + ["bye"]
+
+myNames.removeAll()
+if myNames.isEmpty{
+    print("empty")
+}
+
+myNames.insert("haha", at: 0)
+myNames.append(contentsOf: ["hi", "hello"])
+
+for name in myNames{
+    print(name + "님")
+}
+
+for (index, name) in myNames.enumerated(){
+    print(index, name)
+}
+
+
+// set
+
+var names = Set<String>()
+names.insert("lee")
+names.insert("kim")
+names.insert("park")
+
+names
+
+var sameNames = ["lee", "lee", "park"]
+Set(sameNames)
+
+var nameSet: Set = ["park","park", "lee"]
+
+var numbers1: Set = [1, 2, 3, 4, 5]
+var numbers2: Set = [4, 5, 6, 7, 8]
+
+// 교집합
+numbers1.intersection(numbers2)
+
+// 합집합
+numbers1.union(numbers2)
+
+// 합집합 - 교집합 (대칭차집합)
+numbers1.symmetricDifference(numbers2)
+
+// 여집합
+numbers1.subtracting(numbers2)
+
+
+// Dictionary
+
+var namesOfStreet = [String : Any]()
+
+namesOfStreet["301ro"] = "1st street"
+namesOfStreet["302ro"] = 2
+namesOfStreet["303ro"] = "3rd street"
+
+namesOfStreet["301ro"]
+namesOfStreet
+
+var namesOfStreet2 = ["a" : 1, "b" : 2, "c" : 3]
+
+for dic in namesOfStreet{
+    print(dic)
+}
+
+
+// Control Flow (흐름 제어)
+
+// for
+
+let name = "234234234"
+
+for char in name{
+    print((Int(String(char)) ?? 0) * 10)
+}
+
+for index in 0...5{
+    print(index)
+}
+
+for index in 0..<5{
+    print(index)
+}
+
+
+// while (주의) - 왠만하면 사용하지 않는게 좋다
+// 무한으로 반복문안에서 계속 실행되는 경우 -> 멈춰버림
+
+var a = 0
+
+while a < 10{
+    a = a + 1
+    print("계속 실행")
+}
+
+
+// Switch 조건에 케이스를 만들어서 분기
+
+let b = "a"
+switch b{
+case "a", "b", "c":
+    print("a or b or c")
+case "d":
+    print("d")
+default:
+    print("other")
+}
+
+
+let num = 3
+switch num{
+case 1:
+    print("num 1")
+case 2...5:
+    print("num 2~5")
+default:
+    print("other")
+}
+
+
+let a = 10
+let b = 20
+
+func plus(num1: Int, num2: Int) -> Int{
+    return num1 + num2
+}
+
+let sum = plus(num1: a, num2: b)
+sum
+
+
+func plus2(num1: Int, num2: Int) -> (String, Int){
+    return("결과값은", num1 + num2)
+}
+
+let p = plus(num1: a, num2: b)
+p
+
+// 함수 호출 중 굳이 변수 이름까지 안쓰게 하고 싶을 때
+func plus3(_ num1: Int, _ num2: Int) -> Int{
+    return num1 + num2
+}
+
+let q = plus3(a, b)
+q
+
+
+
+
+
