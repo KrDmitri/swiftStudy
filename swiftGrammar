@@ -335,6 +335,99 @@ let q = plus3(a, b)
 q
 
 
+// Closure(클로저)
+// func와 유사하나 이름이 없다
+
+// function
+func myScore(_ a: Int) -> String{
+    return "\(a)점"
+}
+
+let b: String = myScore(50)
+
+// closure
+let myScore2 = { (a: Int) -> String in
+    return "\(a)점"
+}
+let c: String = myScore2(60)
+
+// 축약(생략)
+let myScore3 = { (a: Int) -> String in
+    "\(a)점"
+}  // 줄이 하나만 있을 경우 return 생략 가능
+
+let myScore4 = { (a: Int) in
+    "\(a)점"
+}  // 반환 타입이 명확할 경우 반환 타입 명시 생략 가능
+
+let myScore5: (Int) -> String = { a in
+    "\(a)점"
+}
+
+let myScore6: (Int, Int, Int) -> String = {
+    "\($0 + $1 + $2)점"
+}  // in 생략하고 $표시로 파라미터 이용 가능
+
+
+// Closure 실전
+
+// 조건1 : 특정한 글자가 포함된 것을 찾는다
+// 조거2 : 입력한 글자로 시작하는 글자를 찾는다
+let names = ["apple", "air", "brown", "red", "orange", "blue", "candy", "hobby"]
+
+let containsSomeText: (String, String) -> Bool = {name, find in
+    if name.contains(find) {
+        return true
+    }
+    return false
+}
+
+let isStartSometext: (String, String) -> Bool = {name, find in
+    if name.first?.description == find{
+        return true
+    }
+    return false
+}
+
+func find(findString: String, condition: (String, String) -> Bool) -> [String]{
+    var newNames = [String]()
+    
+    for name in names{
+        if condition(name, findString){
+            newNames.append(name)
+        }
+    }
+    return newNames
+}
+
+find(findString: "a", condition: containsSomeText)
+find(findString: "a", condition: isStartSometext)
+
+
+var names = ["Chris", "Alex", "Ewa", "Barry", "Daniella"]
+
+// sort
+names.sort { (lhs, rhs) -> Bool in
+    return lhs > rhs
+}
+
+names.sort(by: {$0 > $1} )
+
+names.sort() { $0 > $1 }
+
+names.sort{ $0 > $1 }
+
+names.sort(by : > )
+
+
+
+
+
+
+
+
+
+
 
 
 
