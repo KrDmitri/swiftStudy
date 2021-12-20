@@ -469,10 +469,79 @@ for book in books{
 }
 
 
+// Class
+
+class MyInfo{
+    enum GenderType{
+        case male
+        case female
+    }
+    
+    init(gender: GenderType){
+        self.genderType = gender
+    }
+    
+    private var genderType: GenderType
+    var name = ""
+    var age = 0
+    
+    func isAdult() -> Bool{
+        if age > 19{
+            return true
+        }
+        return false
+    }
+}
+
+var myInfo = MyInfo(gender: .female)
+
+// 참조 (class are reference type)
+var myInfo1 = MyInfo(gender: .female)
+myInfo1.age = 20
+
+var myInfo2 = myInfo1
+myInfo2.age = 100
+
+var myInfo3 = myInfo1
+myInfo3.age = 200
+
+myInfo1.age
+myInfo2.age
+myInfo3.age
 
 
+// Class - Inheritance(상속)
+class GameInfo{
+    var homeScore = 0
+    var awayScore = 0
+    
+    func presentScore() -> String{
+        return homeScore.description + ":" + awayScore.description
+    }
+}
 
+class Soccer: GameInfo{
+    var time = 0
+}
 
+class Baseball: GameInfo{
+    override func presentScore() -> String {
+        return homeScore.description + " 대 " + awayScore.description
+    }
+    var round = 0
+}
+
+class Football: GameInfo{
+}
+
+let soccer = Soccer()
+soccer.homeScore = 1
+soccer.awayScore = 1
+soccer.presentScore()
+
+let baseball = Baseball()
+baseball.homeScore = 20
+baseball.presentScore()
 
 
 
