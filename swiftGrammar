@@ -764,3 +764,110 @@ class UserInfoPresenter {
 
 let presenter = UserInfoPresenter()
 presenter.present()
+
+
+// inheritance 상속 - class
+// enum, protocol, struct에서는 사용 불가
+
+class UserInfo {
+    var name = ""
+    var age = 0
+    func isAdult() -> Bool {
+        if age > 19 {
+            return true
+        }
+        return false
+    }
+}
+
+class Guest: UserInfo {
+    override func isAdult() -> Bool {
+        return true
+    }
+    
+    func present() {
+        name = "kim"
+        print(name)
+        print(super.name)
+        
+        print(isAdult())
+        print(super.isAdult())
+    }
+}
+
+let guest = Guest()
+guest.present()
+
+
+// generic <Type> (로직 반복, 타입 여러가지)
+
+struct MyStack<MyType> where MyType: Numeric{  // where 쓰면 Type 제한 가능
+    var items = [MyType]()
+    
+    mutating func push(item: MyType) {
+        items.append(item)
+    }
+    
+    mutating func pop() -> MyType? {
+        if items.isEmpty {
+            return nil
+        }
+        return items.removeLast()
+    }
+}
+
+var myStack = MyStack<String>()
+myStack.push(item: "a")
+myStack.pop()
+
+var myStack2 = MyStack<Int>()
+myStack2.push(item: 1)
+myStack2.pop()
+
+
+// Higher order function(고차함수)
+
+let names = ["kim", "lee", "min", "john"]
+
+// map -> 원하는 스타일로 변경(길이는 동일)
+let names2 = names.map { $0 + "님" }
+names2
+
+let names3 = names.map{ name in
+    name.count
+}
+
+let names4 = names.map { names in
+    names.count > 3
+}
+names4
+
+// filter -> 거른다
+let filterNames = names.filter { (name) -> Bool in
+    return name.count > 3
+}
+filterNames
+
+// reduce -> 하나로 뭉친다. 통합. 합친다. + -
+let sumName = names.reduce("") { (first, second) -> String in
+    return first + second
+}
+
+let numberArr = [1, 2, 3, 4, 5, nil, 6, nil, 8]
+let sumNum = numberArr.reduce(0) { $0 + ($1 ?? 0) }
+sumNum
+
+// compactMap -> nil을 없앤다
+let numbers = numberArr.compactMap { (num) in
+    return num
+}
+numbers
+
+// flatMap -> array depth를 줄여준다
+let numbers2 = [[1, 2, 3], [4, 5, 6]]
+
+let flatNum = numbers2.flatMap { $0 }
+flatNum
+
+
+
